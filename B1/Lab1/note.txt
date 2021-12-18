@@ -1,0 +1,3 @@
+File chạy: B1/Lab1/server.js
+Lệnh chạy: bin/run B1/Lab1/server.js
+Trang chủ: http://localhost/index
