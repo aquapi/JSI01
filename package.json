@@ -10,6 +10,6 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "async-server": "^0.2.8"
+    "async-server": "^0.2.9"
   }
 }
