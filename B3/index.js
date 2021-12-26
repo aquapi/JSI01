@@ -28,10 +28,6 @@ const checkType = (type, obj) => {
     return true;
 }
 
-/**
- * @param {object} schema 
- * @returns 
- */
 const TypeChecker = class {
     /**
      * @param {object} schema 
@@ -40,7 +36,6 @@ const TypeChecker = class {
         return class {
             /**
              * @param {object} obj 
-             * @returns 
              */
             constructor(obj) {
                 for (const e in schema) {
