@@ -5,8 +5,10 @@ const prompt = create();
 
 const format = new FractionFormat("$ / %");
 
+console.log('Example fraction: 5 / 6');
+
 const frac1 = format.translate(
-    prompt("Example fraction: 5 / 6\nEnter first fraction: ")
+    prompt("Enter first fraction: ")
 ), frac2 = format.translate(
     prompt("Enter second fraction: ")
 );
