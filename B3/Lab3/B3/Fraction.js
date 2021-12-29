@@ -2,6 +2,7 @@ export class Fraction {
     #value = 0;
     #numerator;
     #denominator;
+    #alwaysSimplify;
 
     /**
      * @param {number} numerator 
@@ -24,6 +25,13 @@ export class Fraction {
     }
 
     /**
+     * @param {boolean} value
+     */
+    set alwaysSimplify(value) {
+        this.#alwaysSimplify = value;
+    }
+
+    /**
      * Get the inversion of this fraction
      */
     get inverse() {
@@ -41,11 +49,14 @@ export class Fraction {
      * @param {Fraction} e 
      */
     plus(e) {
-        return new Fraction(
+        const res = new Fraction(
             this.#numerator * e.#denominator
             + e.#numerator * this.#denominator,
             this.#denominator * e.#denominator
-        )
+        );
+        if (this.#alwaysSimplify) 
+            res.simplify();
+        return res;
     }
 
     /**
@@ -59,10 +70,13 @@ export class Fraction {
      * @param {Fraction} e 
      */
     multiply(e) {
-        return new Fraction(
+        const res = new Fraction(
             this.#numerator * e.#numerator,
             this.#denominator * e.#denominator
-        )
+        );
+        if (this.#alwaysSimplify) 
+            res.simplify();
+        return res;
     }
 
     /**

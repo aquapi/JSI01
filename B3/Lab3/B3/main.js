@@ -11,6 +11,8 @@ const frac1 = format.translate(
     prompt("Enter second fraction: ")
 );
 
+frac1.alwaysSimplify = true;
+
 console.log(format.apply(frac1.plus(frac2)));
 console.log(format.apply(frac1.minus(frac2)));
 console.log(format.apply(frac1.multiply(frac2)));
