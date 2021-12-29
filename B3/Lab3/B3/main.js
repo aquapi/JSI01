@@ -1,16 +1,22 @@
-import create from "prompt-sync";
+import prompt from "prompts";
 import { FractionFormat } from "./Fraction.js";
-
-const prompt = create();
 
 const format = new FractionFormat("$ / %");
 
 console.log('Example fraction: 5 / 6');
 
 const frac1 = format.translate(
-    prompt("Enter first fraction: ")
+    (await prompt({
+        type: 'text',
+        name: 'value',
+        message: 'Enter first fraction: '
+    })).value
 ), frac2 = format.translate(
-    prompt("Enter second fraction: ")
+    (await prompt({
+        type: 'text',
+        name: 'value',
+        message: 'Enter second fraction: '
+    })).value
 );
 
 frac1.alwaysSimplify = true;
