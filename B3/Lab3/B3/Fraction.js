@@ -1,4 +1,4 @@
-export class Fraction {
+class __Fraction__ {
     #value = 0;
     #numerator;
     #denominator;
@@ -32,10 +32,10 @@ export class Fraction {
     }
 
     /**
-     * Get the inversion of this fraction
+     * Get the inversion of this _fraction_
      */
     get inverse() {
-        return new Fraction(this.#denominator, this.#numerator);
+        return new __Fraction__(this.#denominator, this.#numerator);
     }
 
     /**
@@ -46,10 +46,10 @@ export class Fraction {
     }
 
     /**
-     * @param {Fraction} e 
+     * @param {__Fraction__} e 
      */
     plus(e) {
-        const res = new Fraction(
+        const res = new __Fraction__(
             this.#numerator * e.#denominator
             + e.#numerator * this.#denominator,
             this.#denominator * e.#denominator
@@ -60,17 +60,17 @@ export class Fraction {
     }
 
     /**
-     * @param {Fraction} e 
+     * @param {__Fraction__} e 
      */
     minus(e) {
-        return this.plus(new Fraction(-e.#numerator, e.#denominator));
+        return this.plus(new __Fraction__(-e.#numerator, e.#denominator));
     }
 
     /**
-     * @param {Fraction} e 
+     * @param {__Fraction__} e 
      */
     multiply(e) {
-        const res = new Fraction(
+        const res = new __Fraction__(
             this.#numerator * e.#numerator,
             this.#denominator * e.#denominator
         );
@@ -80,14 +80,14 @@ export class Fraction {
     }
 
     /**
-     * @param {Fraction} e 
+     * @param {__Fraction__} e 
      */
     divide(e) {
-        return this.multiply(new Fraction(e.#denominator, e.#numerator));
+        return this.multiply(new __Fraction__(e.#denominator, e.#numerator));
     }
 
     /**
-     * Simplify the fraction
+     * Simplify the _fraction_
      */
     simplify() {
         let gcd =
@@ -115,7 +115,7 @@ export class FractionFormat {
     }
 
     /**
-     * @param {Fraction} e 
+     * @param {__Fraction__} e 
      */
     apply(e) {
         return this.format
@@ -125,6 +125,7 @@ export class FractionFormat {
 
     /**
      * @param {string} e 
+     * @returns {__Fraction__}
      */
     translate(e) {
         let numerator, denominator, i, back = 0;
@@ -141,7 +142,18 @@ export class FractionFormat {
                 back += index - 1 - i - back;
             }
         }
-        return new Fraction(numerator, denominator);
+        return new __Fraction__(numerator, denominator);
     }
+}
+
+/**
+ * 
+ * @param  {...any} args 
+ * @returns {__Fraction__}
+ */
+export function Fraction(...args) {
+    if (!new.target) 
+        return new FractionFormat().translate(args[0])
+    return new __Fraction__(args[0], args[1]);
 }
 

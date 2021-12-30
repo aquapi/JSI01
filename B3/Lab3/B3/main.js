@@ -1,5 +1,5 @@
 import prompt from "prompts";
-import { FractionFormat } from "./Fraction.js";
+import { Fraction, FractionFormat } from "./Fraction.js";
 
 // Format
 const format = new FractionFormat;
@@ -8,7 +8,7 @@ const format = new FractionFormat;
 console.log('Example fraction: 5 / 6');
 
 // Translate the input value
-const frac1 = format.translate(
+const frac1 = Fraction(
     // Input value
     (await prompt({
         type: 'text',
@@ -17,7 +17,7 @@ const frac1 = format.translate(
     })).value
 ),
     // Translate the input value
-    frac2 = format.translate(
+    frac2 = Fraction(
         // Input value
         (await prompt({
             type: 'text',
