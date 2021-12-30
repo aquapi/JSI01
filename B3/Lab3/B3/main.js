@@ -2,7 +2,7 @@ import prompt from "prompts";
 import { FractionFormat } from "./Fraction.js";
 
 // Format
-const format = new FractionFormat("$ / %");
+const format = new FractionFormat;
 
 // Example 
 console.log('Example fraction: 5 / 6');

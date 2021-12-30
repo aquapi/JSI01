@@ -110,7 +110,7 @@ export class FractionFormat {
     /**
      * @param {string} format 
      */
-    constructor(format) {
+    constructor(format = "$ / %") {
         this.format = format;
     }
 
