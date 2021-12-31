@@ -1,5 +1,5 @@
 import prompt from "prompts";
-import { Fraction, FractionFormat } from "./Fraction.js";
+import { default as Fraction, FractionFormat } from "./Fraction.js";
 
 // Format
 const format = new FractionFormat;

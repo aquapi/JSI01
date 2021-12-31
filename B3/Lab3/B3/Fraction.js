@@ -1,4 +1,4 @@
-class __Fraction__ {
+class Fraction {
     #value = 0;
     #numerator;
     #denominator;
@@ -35,7 +35,7 @@ class __Fraction__ {
      * Get the inversion of this _fraction_
      */
     get inverse() {
-        return new __Fraction__(this.#denominator, this.#numerator);
+        return new Fraction(this.#denominator, this.#numerator);
     }
 
     /**
@@ -46,48 +46,48 @@ class __Fraction__ {
     }
 
     /**
-     * @param {__Fraction__} e 
+     * @param {Fraction} e 
      */
     plus(e) {
-        const res = new __Fraction__(
+        const res = new Fraction(
             this.#numerator * e.#denominator
             + e.#numerator * this.#denominator,
             this.#denominator * e.#denominator
         );
-        if (this.#alwaysSimplify) 
+        if (this.#alwaysSimplify)
             res.simplify();
         return res;
     }
 
     /**
-     * @param {__Fraction__} e 
+     * @param {Fraction} e 
      */
     minus(e) {
-        return this.plus(new __Fraction__(-e.#numerator, e.#denominator));
+        return this.plus(new Fraction(-e.#numerator, e.#denominator));
     }
 
     /**
-     * @param {__Fraction__} e 
+     * @param {Fraction} e 
      */
     multiply(e) {
-        const res = new __Fraction__(
+        const res = new Fraction(
             this.#numerator * e.#numerator,
             this.#denominator * e.#denominator
         );
-        if (this.#alwaysSimplify) 
+        if (this.#alwaysSimplify)
             res.simplify();
         return res;
     }
 
     /**
-     * @param {__Fraction__} e 
+     * @param {Fraction} e 
      */
     divide(e) {
-        return this.multiply(new __Fraction__(e.#denominator, e.#numerator));
+        return this.multiply(new Fraction(e.#denominator, e.#numerator));
     }
 
     /**
-     * Simplify the _fraction_
+     * Simplify the fraction
      */
     simplify() {
         let gcd =
@@ -103,6 +103,10 @@ class __Fraction__ {
         this.#numerator /= div;
         this.#denominator /= div;
     }
+
+    toString() {
+        return this.#numerator + " / " + this.#denominator;
+    }
 }
 
 export class FractionFormat {
@@ -115,7 +119,7 @@ export class FractionFormat {
     }
 
     /**
-     * @param {__Fraction__} e 
+     * @param {Fraction} e 
      */
     apply(e) {
         return this.format
@@ -125,12 +129,12 @@ export class FractionFormat {
 
     /**
      * @param {string} e 
-     * @returns {__Fraction__}
+     * @returns {Fraction}
      */
     translate(e) {
         let numerator, denominator, i, back = 0;
         for (i = 0; i < this.format.length; i++) {
-            let index = 
+            let index =
                 e.indexOf(this.format[i + 1]);
             index = index === -1 ? e.length : index;
             if (this.format[i] === "$") {
@@ -142,18 +146,18 @@ export class FractionFormat {
                 back += index - 1 - i - back;
             }
         }
-        return new __Fraction__(numerator, denominator);
+        return new Fraction(numerator, denominator);
     }
 }
 
 /**
  * 
  * @param  {...any} args 
- * @returns {__Fraction__}
+ * @returns {Fraction}
  */
-export function Fraction(...args) {
-    if (!new.target) 
+export default function (...args) {
+    if (!new.target)
         return new FractionFormat().translate(args[0])
-    return new __Fraction__(args[0], args[1]);
+    return new Fraction(args[0], args[1]);
 }
 
